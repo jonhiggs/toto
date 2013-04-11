@@ -6,9 +6,19 @@ GEM
       ZenTest (>= 4.4.1)
     builder (3.2.0)
     diff-lcs (1.2.2)
+    git (1.2.5)
     hpricot (0.8.6)
+    jeweler (1.8.4)
+      bundler (~> 1.0)
+      git (>= 1.2.5)
+      rake
+      rdoc
+    json (1.7.7)
     rack (1.5.2)
+    rake (10.0.4)
     rdiscount (2.0.7.2)
+    rdoc (4.0.1)
+      json (~> 1.4)
     riot (0.12.5)
       rr
     rr (1.0.5)
@@ -29,6 +39,7 @@ DEPENDENCIES
   autotest
   builder
   hpricot
+  jeweler
   rack
   rdiscount
   riot
