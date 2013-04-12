@@ -275,9 +275,22 @@ module Toto
       "/#{@config[:prefix]}#{self[:date].strftime("/%Y/%m/%d/#{slug}/")}".squeeze('/')
     end
 
+    def tags()    
+      self[:tags].split(",").map! do |tag|
+        tag.strip.gsub(/\s/, "_")
+      end
+    end
+
+    def categories()    
+      self[:categories].split(",").map! do |tag|
+        tag.strip.gsub(/\s/, "_")
+      end
+    end
+
     def title()   self[:title] || "an article"               end
     def date()    @config[:date].call(self[:date])           end
     def author()  self[:author] || @config[:author]          end
+
     def to_html() self.load; super(:article, @config)        end
     alias :to_s to_html
   end

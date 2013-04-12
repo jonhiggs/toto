@@ -194,7 +194,7 @@ context Toto do
           :slug   => "wizard-of-oz",
           :author => "toetoe",
           :last_modified => "12/04/2013",
-          :categories => 'movies, books',
+          :categories => 'movies, books, cat with space',
           :tags => 'testing, whatever, tag with space',
           :disqus => false
         }, @config)
@@ -203,7 +203,7 @@ context Toto do
       should("parse the date") { [topic[:date].month, topic[:date].year] }.equals [10, 1976]
       should("use the slug")   { topic.slug }.equals "wizard-of-oz"
       should("use the author") { topic.author }.equals "toetoe"
-      should("contain the categories") { topic.categories }.equals %w[movies books]
+      should("contain the categories") { topic.categories }.equals %w[movies books cat_with_space]
       should("contain the tags") { topic.tags }.equals  %w[testing whatever tag_with_space]
 
       context "and long first paragraph" do
