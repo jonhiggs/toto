@@ -19,19 +19,13 @@ $:.unshift File.dirname(__FILE__)
 require 'ext/ext'
 
 module Toto
-  require 'server'
-  require 'site'
-  require 'config'
-  require 'repo'
   require 'archives'
   require 'article'
+  require 'config'
   require 'context'
-
-  Paths = {
-    :templates => "templates",
-    :pages => "templates/pages",
-    :articles => "articles"
-  }
+  require 'repo'
+  require 'server'
+  require 'site'
 
   def self.env
     ENV['RACK_ENV'] || 'production'
