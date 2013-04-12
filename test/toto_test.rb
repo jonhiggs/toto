@@ -161,6 +161,18 @@ context Toto do
       should("have a url")                 { topic.url }.equals Date.today.strftime("#{URL}/%Y/%m/%d/toto-and-the-wizard-of-oz/")
     end
 
+    context "with an invalid option" do
+      setup do
+        Toto::Article.new({
+          :title => "Toto & The Wizard of Oz.",
+          :body => "#Chapter I\nhello, *stranger*.",
+          :blahblah => "This is obviously fake"
+        }, @config)
+      end
+
+      should("have a title")               { topic.title }.equals "Toto & The Wizard of Oz."
+    end
+
     context "with a user-defined summary" do
       setup do
         Toto::Article.new({
@@ -180,13 +192,19 @@ context Toto do
           :body   => ("a little bit of text." * 5) + "\n" + "filler" * 10,
           :date   => "19/10/1976",
           :slug   => "wizard-of-oz",
-          :author => "toetoe"
+          :author => "toetoe",
+          :last_modified => "12/04/2013",
+          :categories => 'movies, books',
+          :tags => 'testing, whatever, tag with space',
+          :disqus => false
         }, @config)
       end
 
       should("parse the date") { [topic[:date].month, topic[:date].year] }.equals [10, 1976]
       should("use the slug")   { topic.slug }.equals "wizard-of-oz"
       should("use the author") { topic.author }.equals "toetoe"
+      should("contain the categories") { topic.categories }.equals %w[movies books]
+      should("contain the tags") { topic.tags }.equals  %w[testing whatever tag_with_space]
 
       context "and long first paragraph" do
         should("create a valid summary") { topic.summary }.equals "<p>" + ("a little bit of text." * 5).chop + "&hellip;</p>\n"
