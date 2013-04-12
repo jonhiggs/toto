@@ -1,9 +1,10 @@
-require 'yaml'
+require 'builder'
 require 'date'
-require 'erb'
-require 'rack'
 require 'digest'
+require 'erb'
 require 'open-uri'
+require 'rack'
+require 'yaml'
 
 if RUBY_PLATFORM =~ /win32/
   require 'maruku'
@@ -11,8 +12,6 @@ if RUBY_PLATFORM =~ /win32/
 else
   require 'rdiscount'
 end
-
-require 'builder'
 
 $:.unshift File.dirname(__FILE__)
 
