@@ -80,6 +80,8 @@ context Toto do
     setup { @toto.get("/2009/12/04/some-random-article") }
     asserts("returns a 200")                { topic.status }.equals 200
     should("contain comments")          { topic.body }.includes_elements(".comments", 0)
+    should("contain source_name")       { topic.body }.includes_html("span" => /source_name_is_google/)
+    should("contain source_url")        { topic.body }.includes_html("span" => /http:\/\/www.google.com\//)
   end
 
   context "GET to the archive" do
