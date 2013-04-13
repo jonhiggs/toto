@@ -2,14 +2,12 @@ module Toto
   module Template
     def to_html page, config, &blk
       path = ([:layout, :repo].include?(page) ? Paths[:templates] : Paths[:pages])
-      subsituted_page = page.to_s.strip.gsub(/##STATIC##/, @config[:static_path].first)
       config[:to_html].call(path, page, binding)
     end
 
     def markdown text
       if (options = @config[:markdown])
-        substituted_text = text.to_s.strip.gsub(/##STATIC##/, @config[:static_path].first)
-        Markdown.new(substituted_text, *(options.eql?(true) ? [] : options)).to_html
+        Markdown.new(text.to_s.strip, *(options.eql?(true) ? [] : options)).to_html
       else
         text.strip
       end
