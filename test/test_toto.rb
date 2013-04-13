@@ -164,7 +164,7 @@ context Toto do
       should("parse the body as markdown") { topic.body }.equals "<h1>Chapter I</h1>\n\n<p>hello, <em>stranger</em>.</p>\n"
       should("create an appropriate slug") { topic.slug }.equals "toto-and-the-wizard-of-oz"
       should("set the date")               { topic.date }.equals "the time is #{Date.today.strftime("%Y/%m/%d %H:%M")}"
-      should("create a summary")           { topic.summary == topic.body }
+      should("create a summary")           { topic.summary }.equals "Chapter I\n\nhello, stranger."
       should("have an author")             { topic.author }.equals AUTHOR
       should("have a path")                { topic.path }.equals Date.today.strftime("/%Y/%m/%d/toto-and-the-wizard-of-oz/")
       should("have a url")                 { topic.url }.equals Date.today.strftime("#{URL}/%Y/%m/%d/toto-and-the-wizard-of-oz/")
@@ -228,7 +228,7 @@ context Toto do
       should("contain the tags") { topic.tags }.equals  %w[testing whatever tag_with_space]
 
       context "and long first paragraph" do
-        should("create a valid summary") { topic.summary }.equals "<p>" + ("a little bit of text." * 5).chop + "&hellip;</p>\n"
+        should("create a valid summary") { topic.summary }.equals ("a little bit of text." * 5).chop + "&hellip;"
       end
 
       context "and a short first paragraph" do
