@@ -7,7 +7,8 @@ module Toto
 
     def markdown text
       if (options = @config[:markdown])
-        Markdown.new(text.to_s.strip, *(options.eql?(true) ? [] : options)).to_html
+        substituted_text = text.to_s.strip.gsub(/##STATIC##/, @config[:static_path].first)
+        Markdown.new(substituted_text, *(options.eql?(true) ? [] : options)).to_html
       else
         text.strip
       end
