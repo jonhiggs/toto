@@ -22,7 +22,12 @@ module Toto
                                                                                                    
     def render page, type
       content = to_html page, @config
-      type == :html ? to_html(:layout, @config, &Proc.new { content }) : send(:"to_#{type}", page)
+      if type == :html 
+        doc = to_html(:layout, @config, &Proc.new { content }) 
+        doc.gsub!(/##STATIC##/, @config[:static_path].first)
+      else
+        send(:"to_#{type}", page)
+      end
     end
                                                                                                    
     def to_xml page
