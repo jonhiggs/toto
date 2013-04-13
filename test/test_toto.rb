@@ -185,6 +185,18 @@ context Toto do
       should("not have the delimiter in the body") { topic.body !~ /~/ }
     end
 
+    context "with an image" do
+      setup do
+        Toto::Article.new({
+          :title => "imaged article",
+          :body => '![Alt](##STATIC##/path/to/img.jpg "Title")'
+        }, @config.merge(:markdown => true, :summary => {:max => 150, :delim => /~\n/}))
+      end
+
+      body_string = "<p><img src=\"http://static.whatever.com/path/to/img.jpg\" title=\"Title\" alt=\"Alt\" /></p>\n"
+      should("have formatted image") { topic.body }.equals body_string
+    end
+
     context "with everything specified" do
       setup do
         Toto::Article.new({
