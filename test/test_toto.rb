@@ -168,6 +168,8 @@ context Toto do
       should("have an author")             { topic.author }.equals AUTHOR
       should("have a path")                { topic.path }.equals Date.today.strftime("/%Y/%m/%d/toto-and-the-wizard-of-oz/")
       should("have a url")                 { topic.url }.equals Date.today.strftime("#{URL}/%Y/%m/%d/toto-and-the-wizard-of-oz/")
+      should("have empty tag list")        { topic.tags }.equals []
+      should("have empty category list")   { topic.categories }.equals []
     end
 
     context "with an invalid option" do
