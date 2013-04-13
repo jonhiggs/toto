@@ -70,6 +70,18 @@ context Toto do
     should("not contain comments")          { topic.body }.includes_elements(".comments", 0)
   end
 
+  context "GET an unoriginal artical with comments enabled" do
+    setup { @toto.get("/2001/01/01/two-thousand-and-one") }
+    asserts("returns a 200")                { topic.status }.equals 200
+    should("contain comments")          { topic.body }.includes_elements(".comments", 1)
+  end
+
+  context "GET an unoriginal artical" do
+    setup { @toto.get("/2009/12/04/some-random-article") }
+    asserts("returns a 200")                { topic.status }.equals 200
+    should("contain comments")          { topic.body }.includes_elements(".comments", 0)
+  end
+
   context "GET to the archive" do
     context "through a year" do
       setup { @toto.get('/2009') }

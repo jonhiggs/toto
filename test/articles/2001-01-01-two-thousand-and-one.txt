@@ -1,5 +1,7 @@
 title: the wizard of oz
 date: 12/10/1932
+original: false
+comments: true
 
 Once upon a time...
 
