@@ -209,7 +209,7 @@ context Toto do
         }, @config)
       end
 
-      should("say it's not original")       { topic.original == true }
+      should("say it's not original")       { topic.original == false }
       should("say who wrote it")            { topic.source_name}.equals "google"
       should("say where it can be found")   { topic.source_url}.equals "http://www.google.com/"
     end

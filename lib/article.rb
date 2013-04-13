@@ -60,7 +60,7 @@ module Toto
     end
 
     def original
-      !!self[:source_name] || !!self[:source_url]
+      !self[:source_name] || !self[:source_url]
     end
 
     def tags
