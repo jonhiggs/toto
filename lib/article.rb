@@ -81,9 +81,11 @@ module Toto
       @config[:disqus] && self[:comments]
     end
 
-    def title()   self[:title] || "an article"               end
-    def date()    @config[:date].call(self[:date])           end
-    def author()  self[:author] || @config[:author]          end
+    def source_url()  self[:source_url]                      end
+    def source_name() self[:source_name]                     end
+    def title()       self[:title] || "an article"           end
+    def date()        @config[:date].call(self[:date])       end
+    def author()      self[:author] || @config[:author]      end
 
     def to_html() self.load; super(:article, @config)        end
     alias :to_s to_html

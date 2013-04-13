@@ -72,7 +72,7 @@ context Toto do
 
   context "GET an unoriginal artical with comments enabled" do
     setup { @toto.get("/2001/01/01/two-thousand-and-one") }
-    asserts("returns a 200")                { topic.status }.equals 200
+    asserts("returns a 200")            { topic.status }.equals 200
     should("contain comments")          { topic.body }.includes_elements(".comments", 1)
   end
 
@@ -194,6 +194,22 @@ context Toto do
       end
 
       should("have a title")               { topic.title }.equals "Toto & The Wizard of Oz."
+    end
+
+    context "with an source attributation" do
+      setup do
+        Toto::Article.new({
+          :title => "Toto & The Wizard of Oz.",
+          :body => "#Chapter I\nhello, *stranger*.",
+          :original => false,
+          :source_name => "google",
+          :source_url => "http://www.google.com/"
+        }, @config)
+      end
+
+      should("say it's not original")       { topic.original == true }
+      should("say who wrote it")            { topic.source_name}.equals "google"
+      should("say where it can be found")   { topic.source_url}.equals "http://www.google.com/"
     end
 
     context "with a user-defined summary" do
