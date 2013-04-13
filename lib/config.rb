@@ -15,7 +15,7 @@ module Toto
       :prefix => "",                                        # common path prefix for the blog
       :date => lambda {|now| now.strftime("%d/%m/%Y") },    # date function
       :markdown => :smart,                                  # use markdown
-      :disqus => false,                                     # disqus name
+      :disqus => { :development => false },                                     # disqus name
       :summary => {:max => 150, :delim => /~\n/},           # length of summary and delimiter
       :ext => 'txt',                                        # extension for articles
       :cache => 28800,                                      # cache duration (seconds)
