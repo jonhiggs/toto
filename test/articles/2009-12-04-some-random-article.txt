@@ -1,6 +1,5 @@
 title: the wizard of oz
 date: 12/10/1932
-original: false
 source_name: source_name_is_google
 source_url: http://www.google.com/
 
