@@ -59,7 +59,7 @@ module Toto
       "/#{@config[:prefix]}#{self[:date].strftime("/%Y/%m/%d/#{slug}/")}".squeeze('/')
     end
 
-    def tags()    
+    def tags
       return [] if self[:tags].nil?
       self[:tags].split(",").sort.map! do |tag|
         tag.strip.gsub(/\s/, "_")
