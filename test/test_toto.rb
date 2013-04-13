@@ -61,6 +61,13 @@ context Toto do
     asserts("returns a 200")                { topic.status }.equals 200
     asserts("content type is set properly") { topic.content_type }.equals "text/html"
     should("contain the article")           { topic.body }.includes_html("p" => /<em>Once upon a time<\/em>/)
+    should("contain the comments")          { topic.body }.includes_elements(".comments", 1)
+  end
+
+  context "GET a single article" do
+    setup { @toto.get("/2009/04/01/tilt-factor") }
+    asserts("returns a 200")                { topic.status }.equals 200
+    should("not contain comments")          { topic.body }.includes_elements(".comments", 0)
   end
 
   context "GET to the archive" do

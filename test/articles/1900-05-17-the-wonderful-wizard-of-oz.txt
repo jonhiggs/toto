@@ -1,5 +1,6 @@
 title: The Wonderful Wizard of Oz
 date: 17/05/1900
+comments: true
 
 _Once upon a time_...
 
