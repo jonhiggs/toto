@@ -61,14 +61,14 @@ module Toto
 
     def tags()    
       return [] if self[:tags].nil?
-      self[:tags].split(",").map! do |tag|
+      self[:tags].split(",").sort.map! do |tag|
         tag.strip.gsub(/\s/, "_")
       end
     end
 
     def categories()    
       return [] if self[:categories].nil?
-      self[:categories].split(",").map! do |tag|
+      self[:categories].split(",").sort.map! do |tag|
         tag.strip.gsub(/\s/, "_")
       end
     end

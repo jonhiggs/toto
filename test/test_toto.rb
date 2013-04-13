@@ -226,8 +226,9 @@ context Toto do
       should("parse the date") { [topic[:date].month, topic[:date].year] }.equals [10, 1976]
       should("use the slug")   { topic.slug }.equals "wizard-of-oz"
       should("use the author") { topic.author }.equals "toetoe"
-      should("contain the categories") { topic.categories }.equals %w[movies books cat_with_space]
-      should("contain the tags") { topic.tags }.equals  %w[testing whatever tag_with_space]
+      should("contain the categories") { topic.categories }.equals %w[books cat_with_space movies]
+      should("contain the tags") { topic.tags }.equals  %w[tag_with_space whatever testing]
+      should("contains correct first tag") { topic.tags.first }.equals "tag_with_space"
 
       context "and long first paragraph" do
         should("create a valid summary") { topic.summary }.equals ("a little bit of text." * 5).chop + "&hellip;"
