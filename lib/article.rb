@@ -78,8 +78,7 @@ module Toto
     end
 
     def comments() 
-      env = ENV["RACK_ENV"] || "development"
-      @config[:disqus][env.to_sym] && self[:comments]
+      @config[:disqus] && self[:comments]
     end
 
     def title()   self[:title] || "an article"               end

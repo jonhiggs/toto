@@ -231,7 +231,7 @@ context Toto do
           :last_modified => "12/04/2013",
           :categories => 'movies, books, cat with space',
           :tags => 'testing, whatever, tag with space',
-          :disqus => { :development => "testing" }
+          :disqus => "testing"
         }, @config)
       end
 
