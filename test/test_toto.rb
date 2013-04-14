@@ -3,10 +3,15 @@ require 'date'
 
 URL = "http://toto.oz"
 AUTHOR = "toto"
+GITHUB = {
+  :user => "testuser",
+  :articles_repo => "testrepo",
+  :markdown_dir => "/markdown"
+}
 
 context Toto do
   setup do
-    @config = Toto::Config.new(:markdown => true, :author => AUTHOR, :url => URL)
+    @config = Toto::Config.new(:markdown => true, :author => AUTHOR, :url => URL, :github => GITHUB)
     @toto = Rack::MockRequest.new(Toto::Server.new(@config))
     Toto::Paths[:articles] = "test/articles"
     Toto::Paths[:pages] = "test/templates"
@@ -63,6 +68,7 @@ context Toto do
     should("contain the article")           { topic.body }.includes_html("p" => /<em>Once upon a time<\/em>/)
     should("contain the comments")          { topic.body }.includes_elements(".comments", 1)
     should("contain local path")            { topic.body }.includes_elements(".local_path", 1)
+    should("contain history url")           { topic.body }.includes_html(".history_url" => /https:\/\/github.com\/testuser\/testrepo\/commits\/master\/markdown\/1900-05-17-the-wonderful-wizard-of-oz.txt/)
   end
 
   context "GET a single article" do
@@ -231,6 +237,7 @@ context Toto do
       should("contain source name") { topic.source_name }.equals "i am source"
       should("contain source url") { topic.source_url }.equals "http://www.source.com"
       should("contain local path") { topic.local_path }.equals nil # this should be nil when their is not a local file.
+      should("contain history url") { topic.history_url }.equals nil # this should be nil when their is not a local file.
 
       context "and long first paragraph" do
         should("create a valid summary") { topic.summary }.equals ("a little bit of text." * 5).chop + "&hellip;"

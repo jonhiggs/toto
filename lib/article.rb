@@ -65,6 +65,16 @@ module Toto
       "/#{@config[:prefix]}#{self[:date].strftime("/%Y/%m/%d/#{slug}/")}".squeeze('/')
     end
 
+    def history_url
+      return nil if self.local_path.nil?
+      file = File.split(self.local_path).last
+      user = @config[:github][:user]
+      repo = @config[:github][:articles_repo]
+      markdown = @config[:github][:markdown_dir]
+      path = File.join("https://github.com/", user, repo, "commits/master", markdown, file)
+      URI::encode(path)
+    end
+
     def original
       !self[:source_name] || !self[:source_url]
     end

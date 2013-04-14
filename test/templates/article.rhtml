@@ -10,5 +10,9 @@
 <% end %>
 
 <% unless local_path.nil? %>
-  <section class="local_path">local_path is <%= local_path %></section>
+  <section class="local_path"><%= local_path %></section>
+<% end %>
+
+<% unless local_path.nil? %>
+  <section class="history_url"><%= history_url %></section>
 <% end %>
