@@ -244,9 +244,9 @@ context Toto do
           :title  => "The Wizard of Oz",
           :body   => ("a little bit of text." * 5) + "\n" + "filler" * 10,
           :date   => "19/10/1976",
+          :modified => "02/03/2022",
           :slug   => "wizard-of-oz",
           :author => "toetoe",
-          :last_modified => "12/04/2013",
           :categories => 'movies, books, cat with space',
           :tags => 'testing, whatever, tag with space',
           :disqus => "testing"
@@ -254,6 +254,7 @@ context Toto do
       end
 
       should("parse the date") { [topic[:date].month, topic[:date].year] }.equals [10, 1976]
+      should("parse the modified date") { [topic.modified.month, topic.modified.year] }.equals [3, 2022]
       should("use the slug")   { topic.slug }.equals "wizard-of-oz"
       should("use the author") { topic.author }.equals "toetoe"
       should("contain the categories") { topic.categories }.equals %w[books cat_with_space movies]

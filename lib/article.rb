@@ -70,15 +70,19 @@ module Toto
       end
     end
 
-    def categories()    
+    def categories
       return [] if self[:categories].nil?
       self[:categories].split(",").sort.map! do |tag|
         tag.strip.gsub(/\s/, "_")
       end
     end
 
-    def comments() 
+    def comments
       @config[:disqus] && self[:comments]
+    end
+
+    def modified
+      Date::parse(self[:modified])
     end
 
     def source_url()  self[:source_url]                      end
