@@ -8,3 +8,7 @@
 <% if comments %>
   <section class="comments">comments enabled</section>
 <% end %>
+
+<% unless local_path.nil? %>
+  <section class="local_path">local_path is <%= local_path %></section>
+<% end %>

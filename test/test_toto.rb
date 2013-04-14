@@ -62,6 +62,7 @@ context Toto do
     asserts("content type is set properly") { topic.content_type }.equals "text/html"
     should("contain the article")           { topic.body }.includes_html("p" => /<em>Once upon a time<\/em>/)
     should("contain the comments")          { topic.body }.includes_elements(".comments", 1)
+    should("contain local path")            { topic.body }.includes_elements(".local_path", 1)
   end
 
   context "GET a single article" do
@@ -229,6 +230,7 @@ context Toto do
       should("contain comments") { topic.comments }.equals true
       should("contain source name") { topic.source_name }.equals "i am source"
       should("contain source url") { topic.source_url }.equals "http://www.source.com"
+      should("contain local path") { topic.local_path }.equals nil # this should be nil when their is not a local file.
 
       context "and long first paragraph" do
         should("create a valid summary") { topic.summary }.equals ("a little bit of text." * 5).chop + "&hellip;"

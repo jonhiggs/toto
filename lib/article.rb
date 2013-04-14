@@ -11,6 +11,7 @@ module Toto
 
     def load
       data = if @obj.is_a? String
+        local_path = @obj
         meta, self[:body] = File.read(@obj).split(/\n\n/, 2)
 
         # use the date from the filename, or else toto won't find the article
@@ -23,12 +24,17 @@ module Toto
       self.taint
       self.update data
       self[:date] = Date.parse(self[:date].gsub('/', '-')) rescue Date.today
+      self[:local_path] = local_path rescue nil
       self
     end
 
     def [] key
       self.load unless self.tainted?
       super
+    end
+
+    def local_path
+      self[:local_path]
     end
 
     def slug
