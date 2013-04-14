@@ -225,7 +225,9 @@ context Toto do
           :author => "toetoe",
           :categories => 'movies, books, cat with space',
           :tags => 'testing, whatever, tag with space',
-          :disqus => "testing"
+          :comments => true,
+          :source_name => "i am source",
+          :source_url => "http://www.source.com"
         }, @config)
       end
 
@@ -236,6 +238,9 @@ context Toto do
       should("contain the categories") { topic.categories }.equals %w[books cat_with_space movies]
       should("contain the tags") { topic.tags }.equals  %w[tag_with_space whatever testing]
       should("contains correct first tag") { topic.tags.first }.equals "tag_with_space"
+      should("contain comments") { topic.comments }.equals true
+      should("contain source name") { topic.source_name }.equals "i am source"
+      should("contain source url") { topic.source_url }.equals "http://www.source.com"
 
       context "and long first paragraph" do
         should("create a valid summary") { topic.summary }.equals ("a little bit of text." * 5).chop + "&hellip;"
