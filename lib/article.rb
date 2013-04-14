@@ -82,7 +82,8 @@ module Toto
     end
 
     def modified
-      Date::parse(self[:modified])
+      return self.date if self[:modified].nil?
+      Date.parse(self[:modified])
     end
 
     def source_url()  self[:source_url]                      end
