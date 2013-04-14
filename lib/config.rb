@@ -2,7 +2,7 @@ module Toto
   Paths = {
     :templates => "templates",
     :pages => "templates/pages",
-    :articles => "articles"
+    :articles => "articles/markdown"
   }
 
   class Config < Hash
