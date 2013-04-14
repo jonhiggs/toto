@@ -161,18 +161,6 @@ context Toto do
       should("have empty category list")   { topic.categories }.equals []
     end
 
-    context "with an invalid option" do
-      setup do
-        Toto::Article.new({
-          :title => "Toto & The Wizard of Oz.",
-          :body => "#Chapter I\nhello, *stranger*.",
-          :blahblah => "This is obviously fake"
-        }, @config)
-      end
-
-      should("have a title")               { topic.title }.equals "Toto & The Wizard of Oz."
-    end
-
     context "with an source attributation" do
       setup do
         Toto::Article.new({
