@@ -56,9 +56,6 @@ module Toto
           end
         elsif respond_to?(path)
           context[send(path, type), path.to_sym]
-        elsif (repo = @config[:github][:repos].grep(/#{path}/).first) &&
-              !@config[:github][:user].empty?
-          context[Repo.new(repo, @config), :repo]
         else
           context[{}, path.to_sym]
         end

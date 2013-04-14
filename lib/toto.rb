@@ -22,7 +22,6 @@ module Toto
   require 'article'
   require 'config'
   require 'context'
-  require 'repo'
   require 'server'
   require 'site'
 
