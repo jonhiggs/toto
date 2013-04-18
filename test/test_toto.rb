@@ -27,7 +27,6 @@ context Toto do
     should("include a couple of article")   { topic.body }.includes_elements("#articles li", 3)
     should("include an archive")            { topic.body }.includes_elements("#archives li", 2)
     should("have html from layout.rb")      { topic.body }.includes_html("title" => /tests/)
-    should("substitute ##STATIC##")        { not topic.body.include?  "##STATIC##" }
 
     context "with no articles" do
       setup { Rack::MockRequest.new(Toto::Server.new(@config.merge(:ext => 'oxo'))).get('/') }
@@ -175,19 +174,6 @@ context Toto do
 
       should("split the article at the delimiter") { topic.summary }.equals "Well,\nhello"
       should("not have the delimiter in the body") { topic.body !~ /~/ }
-    end
-
-    context "with an image" do
-      setup do
-        Toto::Article.new({
-          :title => "imaged article",
-          :body => '![Alt](##STATIC##/path/to/img.jpg "Title")'
-        }, @config.merge(:markdown => true, :summary => {:max => 150, :delim => /~\n/}))
-      end
-
-      body_string = "<p><img src=\"http://static.whatever.com/path/to/img.jpg\" title=\"Title\" alt=\"Alt\" /></p>\n"
-      # TODO: make this check pass at some point.
-      #should("have formatted image") { topic.body }.equals body_string
     end
 
     context "with everything specified" do
