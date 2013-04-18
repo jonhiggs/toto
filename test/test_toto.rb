@@ -91,25 +91,6 @@ context Toto do
     should("contain source_url")        { topic.body }.includes_html("span" => /http:\/\/www.google.com\//)
   end
 
-  context "GET to the archive" do
-    context "through a year" do
-      setup { @toto.get('/2009') }
-      asserts("returns a 200")                     { topic.status }.equals 200
-      should("includes the entries for that year") { topic.body }.includes_elements("li.entry", 3)
-    end
-
-    context "through a year & month" do
-      setup { @toto.get('/2009/12') }
-      asserts("returns a 200")                      { topic.status }.equals 200
-      should("includes the entries for that month") { topic.body }.includes_elements("li.entry", 2)
-      should("includes the year & month")           { topic.body }.includes_html("h1" => /2009\/12/)
-    end
-
-    context "through /archive" do
-      setup { @toto.get('/archive') }
-    end
-  end
-
   context "GET to an unknown route with a custom error" do
     setup do
       @config[:error] = lambda {|code| "error: #{code}" }
