@@ -20,7 +20,7 @@ module Toto
     def title
       @config[:title]
     end
-                                                                                                   
+
     def render page, type
       content = to_html page, @config
       if type == :html 
