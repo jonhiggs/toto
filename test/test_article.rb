@@ -11,9 +11,9 @@ context "#Toto::Article - 2009-12-11-the-dichotomy-of-design.txt" do
   asserts(:local_path).equals "test/articles/the-dichotomy-of-design.txt"
   asserts(:slug).equals "the-wizard-of-oz"
   asserts(:summary).equals "Once upon a time&hellip;"
-  asserts(:url).equals "http://127.0.0.1/1932/10/12/the-wizard-of-oz/"
+  asserts(:url).equals "http://127.0.0.1/the-wizard-of-oz/"
   asserts(:body).equals "<p>Once upon a time&hellip;</p>\n"
-  asserts(:path).equals "/1932/10/12/the-wizard-of-oz/"
+  asserts(:path).equals "/the-wizard-of-oz/"
   asserts(:history_url).equals "https://github.com/commits/master/markdown/the-dichotomy-of-design.txt"
   asserts(:original).equals true
   asserts(:tags).equals []

@@ -62,7 +62,7 @@ module Toto
     end
 
     def path
-      "/#{@config[:prefix]}#{self[:date].strftime("/%Y/%m/%d/#{slug}/")}".squeeze('/')
+      "/#{@config[:prefix]}/#{slug}/".squeeze('/')
     end
 
     def history_url

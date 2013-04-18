@@ -142,8 +142,8 @@ context Toto do
       should("set the modification date")  { topic.modified }.equals Date.today.strftime("%Y/%m/%d")
       should("create a summary")           { topic.summary }.equals "Chapter I\n\nhello, stranger."
       should("have an author")             { topic.author }.equals AUTHOR
-      should("have a path")                { topic.path }.equals Date.today.strftime("/%Y/%m/%d/toto-and-the-wizard-of-oz/")
-      should("have a url")                 { topic.url }.equals Date.today.strftime("#{URL}/%Y/%m/%d/toto-and-the-wizard-of-oz/")
+      should("have a path")                { topic.path }.equals "/toto-and-the-wizard-of-oz/"
+      should("have a url")                 { topic.url }.equals "#{URL}/toto-and-the-wizard-of-oz/"
       should("have empty tag list")        { topic.tags }.equals []
       should("have empty category list")   { topic.categories }.equals []
     end
@@ -231,7 +231,7 @@ context Toto do
           }, conf)
         end
 
-        should("be in the directory") { topic.path }.equals Date.today.strftime("/blog/%Y/%m/%d/toto-and-the-wizard-of-oz/")
+        should("be in the directory") { topic.path }.equals "/blog/toto-and-the-wizard-of-oz/"
       end
 
       context "with explicit leading forward slash" do
@@ -244,7 +244,7 @@ context Toto do
           }, conf)
         end
 
-        should("be in the directory") { topic.path }.equals Date.today.strftime("/blog/%Y/%m/%d/toto-and-the-wizard-of-oz/")
+        should("be in the directory") { topic.path }.equals "/blog/toto-and-the-wizard-of-oz/"
       end
 
       context "with explicit trailing forward slash" do
@@ -257,7 +257,7 @@ context Toto do
           }, conf)
         end
 
-        should("be in the directory") { topic.path }.equals Date.today.strftime("/blog/%Y/%m/%d/toto-and-the-wizard-of-oz/")
+        should("be in the directory") { topic.path }.equals "/blog/toto-and-the-wizard-of-oz/"
       end
     end
   end
