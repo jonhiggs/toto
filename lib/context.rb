@@ -10,7 +10,7 @@ module Toto
       @articles = Site.articles(@config[:ext]).reverse.map do |a|
         Article.new(a, @config)
       end
-                                                                                                   
+
       ctx.each do |k, v|
         meta_def(k) { ctx.instance_of?(Hash) ? v : ctx.send(k) }
       end

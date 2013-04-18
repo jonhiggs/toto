@@ -26,4 +26,3 @@ context "#Toto::Article - 2009-12-11-the-dichotomy-of-design.txt" do
   asserts(:date).equals "12/10/1932"
   asserts(:author).equals ENV["USER"]
 end
-
