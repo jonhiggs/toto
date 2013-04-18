@@ -12,6 +12,10 @@ module Toto
       @config.set key, value
     end
 
+    def articles
+      Dir["#{Paths[:articles]}/*.#{@config[:ext]}"].sort_by {|entry| File.basename(entry) }
+    end
+
     def index type = :html
       articles = type == :html ? self.articles.reverse : self.articles
       {:articles => articles.map do |article|
@@ -76,12 +80,5 @@ module Toto
       [@config[:error].call(code), code]
     end
 
-    def articles
-      self.class.articles self[:ext]
-    end
-
-    def self.articles ext
-      Dir["#{Paths[:articles]}/*.#{ext}"].sort_by {|entry| File.basename(entry) }
-    end
   end
 end

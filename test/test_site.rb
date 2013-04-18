@@ -10,6 +10,7 @@ context "#Toto::Site - Defaults" do
   asserts("url from Config") {topic[:url]}.equals "http://127.0.0.1"
   asserts(:index).includes :articles
   asserts(:index).includes :archives
+  asserts(:articles).size 5
 end
 
 context "#Toto::Site - /" do
@@ -25,7 +26,8 @@ context "#Toto::Site - /" do
   asserts("ext from Config") {topic[:ext]}.equals "txt"
   asserts(:index).includes :articles
   asserts(:index).includes :archives
-  asserts("count articles") { topic.index[:articles] }.equals "not sure yet"
-  asserts("count archives") { topic.index[:archives] }.equals "not sure yet"
+  asserts(:articles).size 5
+  asserts("count articles") { topic.index[:articles].size }.equals 5
+  asserts("count archives") { topic.index[:archives].size }.equals 5
   asserts("article from path") { topic.article "/" }.equals "not sure yet"
 end

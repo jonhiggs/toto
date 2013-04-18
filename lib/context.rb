@@ -8,8 +8,7 @@ module Toto
     def initialize ctx = {}, config = {}, path = "/", env = {}
       @config, @context, @path, @env = config, ctx, path, env
 
-      # TODO: look if we need @articles because it doesn't seem to be used
-      @articles = Site.articles(@config[:ext]).reverse.map do |a|
+      @articles = Site.new(@config).articles.reverse.map do |a|
         Article.new(a, @config)
       end
 
