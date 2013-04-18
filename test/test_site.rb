@@ -29,5 +29,5 @@ context "#Toto::Site - /" do
   asserts(:articles).size 5
   asserts("count articles") { topic.index[:articles].size }.equals 5
   asserts("count archives") { topic.index[:archives].size }.equals 5
-  asserts("article from path") { topic.article "/" }.equals "not sure yet"
+  asserts("article from path") { topic.article(%w[2009 12 04 some random article])[:title] }.equals "the wizard of oz"
 end
