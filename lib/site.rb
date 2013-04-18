@@ -16,6 +16,7 @@ module Toto
       articles = type == :html ? self.articles.reverse : self.articles
       {:articles => articles.map do |article|
         Article.new article, @config
+        # TODO: during tests, this returns {}
       end}.merge archives
     end
 
@@ -31,6 +32,7 @@ module Toto
     end
 
     def article route
+      # NOTE: route is a Toto::Article object
       Article.new("#{Paths[:articles]}/#{route.join('-')}.#{self[:ext]}", @config).load
     end
 
