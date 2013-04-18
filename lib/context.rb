@@ -24,8 +24,7 @@ module Toto
     def render page, type
       content = to_html page, @config
       if type == :html 
-        doc = to_html(:layout, @config, &Proc.new { content }) 
-        doc.gsub!(/##STATIC##/, @config[:static_path].sample)
+        to_html(:layout, @config, &Proc.new { content }) 
       else
         send(:"to_#{type}", page)
       end
