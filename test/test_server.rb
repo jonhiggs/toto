@@ -18,8 +18,9 @@ context "#Toto::Server - Defaults" do
     asserts("returns a 200")                { topic.status }.equals 200
     asserts("body is not empty")            { not topic.body.empty? }
     asserts("content type is set properly") { topic.content_type }.equals "text/html"
-    should("include a couple of articles")   { topic.body }.includes_elements(".entry", 5)
+    should("include a couple of articles")   { topic.body }.includes_elements(".article", 3)
     should("have html from layout.rb")      { topic.body }.includes_html("title" => /tests/)
+    should("have html from index.rhtml")      { topic.body }.includes_html("h1" => /index/)
   end
 
   context "can get /article_dir/the-dichotomy-of-design" do
@@ -29,5 +30,6 @@ context "#Toto::Server - Defaults" do
     asserts("content type is set properly") { topic.content_type }.equals "text/html"
     should("include the content")   { topic.body }.includes_html("p" => /Once upon a time/)
     should("have html from layout.rb")      { topic.body }.includes_html("title" => /tests/)
+    should("have html from article.rb")      { topic.body }.includes_html("h2" => /the wizard of oz/)
   end
 end

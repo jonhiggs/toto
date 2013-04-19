@@ -9,10 +9,9 @@ context "#Toto::Site - Defaults" do
   asserts_topic.kind_of Toto::Site
   asserts("url from Config") {topic[:url]}.equals "http://127.0.0.1"
   asserts(:index).includes :articles
-  asserts(:index).includes :archives
 end
 
-context "#Toto::Site - /" do
+context "#Toto::Site - /article_directory/the-dichotomy-of-design" do
   setup do
     Toto::Paths[:articles] = "test/articles"
     Toto::Paths[:pages] = "test/templates"
@@ -24,9 +23,7 @@ context "#Toto::Site - /" do
   asserts_topic.kind_of Toto::Site
   asserts("ext from Config") {topic[:ext]}.equals "txt"
   asserts(:index).includes :articles
-  asserts(:index).includes :archives
   asserts(:articles).size 5
   asserts("count articles") { topic.index[:articles].size }.equals 5
-  asserts("count archives") { topic.index[:archives].size }.equals 5
-  asserts("article from path") { topic.article(%w[2009 12 04 some random article])[:title] }.equals "the wizard of oz"
+  asserts("article from path") { topic.article(%w[article_directory the-dichotomy-of-design])[:title] }.equals "the wizard of oz"
 end

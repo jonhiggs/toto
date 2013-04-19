@@ -1,11 +1,9 @@
+<h1>index</h1>
 <ul id="articles">
   <% for article in articles[0...3] %>
-    <li><%= article %></li>
+    <li class="article"><%= article %></li>
   <% end %>
 </ul>
-<div id="archives">
-  <%= archives[3...5] %>
-</div>
 <!-- testing env variable passing -->
 <p>env passed: <%= env != nil %><br/></p>
 <!-- testing get/post parameter passing -->

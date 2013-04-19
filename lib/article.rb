@@ -10,13 +10,12 @@ module Toto
     end
 
     def load
+      # @obj is path to article file.
       data = if @obj.is_a? String
         local_path = @obj
         meta, self[:body] = File.read(@obj).split(/\n\n/, 2)
 
-        # use the date from the filename, or else toto won't find the article
-        @obj =~ /\/(\d{4}-\d{2}-\d{2})[^\/]*$/
-        ($1 ? {:date => $1} : {}).merge(YAML.load(meta))
+        YAML.load(meta)
       elsif @obj.is_a? Hash
         @obj
       end.inject({}) {|h, (k,v)| h.merge(k.to_sym => v) }

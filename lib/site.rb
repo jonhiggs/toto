@@ -16,6 +16,10 @@ module Toto
       Dir["#{Paths[:articles]}/*.#{@config[:ext]}"].sort_by {|entry| File.basename(entry) }
     end
 
+    def pages
+      Dir["#{Paths[:templates]}/*.rhtml"].sort_by {|entry| File.basename(entry) }
+    end
+
     def index type = :html
       articles = type == :html ? self.articles.reverse : self.articles
       {:articles => articles.map do |article|
@@ -37,7 +41,7 @@ module Toto
 
     def article route
       # NOTE: route is a Toto::Article object
-      Article.new("#{Paths[:articles]}/#{route.join('-')}.#{self[:ext]}", @config).load
+      Article.new("#{Paths[:articles]}/#{route.last}.#{self[:ext]}", @config).load
     end
 
     def /
@@ -53,12 +57,12 @@ module Toto
 
       body, status = if Context.new.respond_to?(:"to_#{type}")
         if route.first == @config[:prefix]
-          context[article(route[1..-1]), :article]
+          context[article(route), :article]
+        elsif respond_to?(path)
+          context[send(path, type), path.to_sym]
         else
-          context[archives(route * '-'), :archives]
+          http 400
         end
-      else
-        http 400
       end
 
     rescue Errno::ENOENT => e
