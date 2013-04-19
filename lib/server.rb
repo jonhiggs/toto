@@ -14,10 +14,10 @@ module Toto
 
       return [400, {}, []] unless @request.get?
 
-      path, mime = @request.path_info.split('.')
-      route = (path || '/').split('/').reject {|i| i.empty? }
+      @path, @mime = @request.path_info.split('.')
+      @route = (@path || '/').split('/').reject {|i| i.empty? }
 
-      response = @site.go(route, env, *(mime ? mime : []))
+      response = @site.go(@route, env, *(@mime ? @mime : []))
 
       @response.body = [response[:body]]
       @response['Content-Length'] = response[:body].bytesize.to_s unless response[:body].empty?

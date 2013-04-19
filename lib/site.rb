@@ -52,18 +52,10 @@ module Toto
       end
 
       body, status = if Context.new.respond_to?(:"to_#{type}")
-        if route.first =~ /\d{4}/
-          case route.size
-            when 1..3
-              context[archives(route * '-'), :archives]
-            when 4
-              context[article(route), :article]
-            else http 400
-          end
-        elsif respond_to?(path)
-          context[send(path, type), path.to_sym]
+        if route.first == @config[:prefix]
+          context[article(route[1..-1]), :article]
         else
-          context[{}, path.to_sym]
+          context[archives(route * '-'), :archives]
         end
       else
         http 400
