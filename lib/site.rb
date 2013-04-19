@@ -61,7 +61,8 @@ module Toto
         elsif respond_to?(path)
           context[send(path, type), path.to_sym]
         else
-          http 400
+          context[{}, path.to_sym]
+          #http 400
         end
       end
 
