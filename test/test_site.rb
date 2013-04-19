@@ -10,7 +10,6 @@ context "#Toto::Site - Defaults" do
   asserts("url from Config") {topic[:url]}.equals "http://127.0.0.1"
   asserts(:index).includes :articles
   asserts(:index).includes :archives
-  asserts(:articles).size 5
 end
 
 context "#Toto::Site - /" do
