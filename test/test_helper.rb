@@ -6,6 +6,12 @@ $:.unshift File.dirname(__FILE__)
 $:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 
 require 'toto'
+# TODO: there is a bug which prevents pages and templates from being different.
+Toto::Paths = {
+  :templates => "test/templates",
+  :pages => "test/templates",
+  :articles => "test/articles/markdown"
+}
 
 module Toto
   class IncludesHTMLMacro < Riot::AssertionMacro

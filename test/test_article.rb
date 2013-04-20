@@ -1,14 +1,14 @@
 require 'test_helper'
 
-context "#Toto::Article - 2009-12-11-the-dichotomy-of-design.txt" do
+context "#Toto::Article - the-dichotomy-of-design.txt" do
   setup do
     config = Toto::Config.new({})
-    route = "test/articles/the-dichotomy-of-design.txt"
+    route = "test/articles/markdown/the-dichotomy-of-design.txt"
     article = Toto::Article.new(route, config)
   end
 
   asserts_topic.kind_of Toto::Article
-  asserts(:local_path).equals "test/articles/the-dichotomy-of-design.txt"
+  asserts(:local_path).equals "test/articles/markdown/the-dichotomy-of-design.txt"
   asserts(:slug).equals "the-wizard-of-oz"
   asserts(:summary).equals "Once upon a time&hellip;"
   asserts(:url).equals "http://127.0.0.1/article_directory/the-wizard-of-oz/"

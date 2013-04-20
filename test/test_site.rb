@@ -13,9 +13,6 @@ end
 
 context "#Toto::Site - /article_directory/the-dichotomy-of-design" do
   setup do
-    Toto::Paths[:articles] = "test/articles"
-    Toto::Paths[:pages] = "test/templates"
-    Toto::Paths[:templates] = "test/templates"
     config = Toto::Config.new({})
     Toto::Site.new(config)
   end

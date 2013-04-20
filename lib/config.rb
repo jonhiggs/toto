@@ -1,10 +1,4 @@
 module Toto
-  Paths = {
-    :templates => "templates",
-    :pages => "templates/pages",
-    :articles => "articles/markdown"
-  }
-
   class Config < Hash
     Defaults = {
       :author => ENV['USER'],                               # blog author

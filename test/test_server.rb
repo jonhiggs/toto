@@ -3,9 +3,6 @@ require 'test_helper'
 context "#Toto::Server - Defaults" do
   setup do
     @config = Toto::Config.new({ :prefix => "article_dir"})
-    Toto::Paths[:articles] = "test/articles"
-    Toto::Paths[:pages] = "test/templates"
-    Toto::Paths[:templates] = "test/templates"
     @toto = Rack::MockRequest.new(Toto::Server.new(@config))
   end
 
