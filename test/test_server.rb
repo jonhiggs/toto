@@ -27,6 +27,8 @@ context "#Toto::Server - Defaults" do
     asserts("content type is set properly") { topic.content_type }.equals "text/html"
     should("include the content")   { topic.body }.includes_html("p" => /Once upon a time/)
     should("have html from layout.rb")      { topic.body }.includes_html("title" => /tests/)
+    should("have static from @config[:static_path]")  { topic.body }.includes_html("font" => "http://static.whatever.com/css/main.css")
+
     should("have html from article.rb")      { topic.body }.includes_html("h2" => /the wizard of oz/)
   end
 

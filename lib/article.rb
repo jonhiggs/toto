@@ -13,7 +13,8 @@ module Toto
       # @obj is path to article file.
       data = if @obj.is_a? String
         local_path = @obj
-        meta, self[:body] = File.read(@obj).split(/\n\n/, 2)
+        meta, body = File.read(@obj).split(/\n\n/, 2)
+        self[:body] = body.gsub!("##STATIC##", @config[:static_path].sample)
 
         YAML.load(meta)
       elsif @obj.is_a? Hash

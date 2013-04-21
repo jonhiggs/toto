@@ -12,7 +12,6 @@ context "#Toto::Article - the-dichotomy-of-design.txt" do
   asserts(:slug).equals "the-wizard-of-oz"
   asserts(:summary).equals "Once upon a time&hellip;"
   asserts(:url).equals "http://127.0.0.1/article_directory/the-wizard-of-oz/"
-  asserts(:body).equals "<p>Once upon a time&hellip;</p>\n"
   asserts(:path).equals "/article_directory/the-wizard-of-oz/"
   asserts(:history_url).equals "https://github.com/commits/master/markdown/the-dichotomy-of-design.txt"
   asserts(:original).equals true
@@ -25,4 +24,7 @@ context "#Toto::Article - the-dichotomy-of-design.txt" do
   asserts(:title).equals "the wizard of oz"
   asserts(:date).equals "12/10/1932"
   asserts(:author).equals ENV["USER"]
+
+  should("includes the article") { !!topic.body.match(/Once upon a time/) }.equals true
+  should("substitute the static path") { !!topic.body.match(/static.whatever.com/) }.equals true
 end
