@@ -16,6 +16,7 @@ context "#Toto::Server - Defaults" do
     asserts("body is not empty")            { not topic.body.empty? }
     asserts("content type is set properly") { topic.content_type }.equals "text/html"
     should("include a couple of articles")   { topic.body }.includes_elements(".article", 3)
+    should("include an article summary")    { topic.body }.includes_html("p" => /Once upon a time.*/)
     should("have html from layout.rb")      { topic.body }.includes_html("title" => /tests/)
     should("have html from index.rhtml")      { topic.body }.includes_html("h1" => /index/)
   end
