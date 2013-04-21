@@ -24,6 +24,7 @@ context "#Toto::Article - the-dichotomy-of-design.txt" do
   asserts(:title).equals "the wizard of oz"
   asserts(:date).equals "12/10/1932"
   asserts(:author).equals ENV["USER"]
+  asserts(:summary).equals "Once upon a time&hellip;"
 
   should("includes the article") { !!topic.body.match(/Once upon a time/) }.equals true
   should("substitute the static path") { !!topic.body.match(/static.whatever.com/) }.equals true
