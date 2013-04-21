@@ -14,7 +14,7 @@ module Toto
       data = if @obj.is_a? String
         local_path = @obj
         meta, body = File.read(@obj).split(/\n\n/, 2)
-        self[:body] = body.gsub!("##STATIC##", @config[:static_path].sample)
+        self[:body] = body
 
         YAML.load(meta)
       elsif @obj.is_a? Hash
@@ -58,7 +58,8 @@ module Toto
     alias :permalink url
 
     def body
-      markdown self[:body].sub(@config[:summary][:delim], '') rescue markdown self[:body]
+      body = self[:body].gsub("##STATIC##", @config[:static_path].sample)
+      markdown body.sub(@config[:summary][:delim], '') rescue markdown body
     end
 
     def path
