@@ -5,7 +5,7 @@ module Toto
       :title => Dir.pwd.split('/').last,                    # site title
       :root => "index",                                     # site index
       :url => "http://127.0.0.1",                           # root URL of the site
-      :static_path => [ "http://static.whatever.com" ],
+      :static_path => [ "http://static.whatever.com" ],     # will take a random sample from array.
       :prefix => "article_directory",                       # common path prefix for the blog
       :date => lambda {|now| now.strftime("%d/%m/%Y") },    # date function
       :markdown => :smart,                                  # use markdown
