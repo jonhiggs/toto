@@ -48,4 +48,20 @@ context "#Toto::Server - Defaults" do
     asserts("content type is set properly") { topic.content_type }.equals "text/html"
     should("include the content")   { topic.body }.includes_html("font" => /not in Kansas/)
   end
+
+  context "can get /index.xml" do
+    setup { @toto.get("/index.xml") }
+    asserts("returns a 200")                { topic.status }.equals 200
+    asserts("body is not empty")            { not topic.body.empty? }
+    asserts("content type is set properly") { topic.content_type }.equals "application/xml"
+    should("include the articles")          { topic.body }.includes_elements("entry", 5)
+  end
+
+  context "can get /sitemap.xml" do
+    setup { @toto.get("/sitemap.xml") }
+    asserts("returns a 200")                { topic.status }.equals 200
+    asserts("body is not empty")            { not topic.body.empty? }
+    asserts("content type is set properly") { topic.content_type }.equals "application/xml"
+    should("include the articles")          { topic.body }.includes_elements("entry", 5)
+  end
 end
