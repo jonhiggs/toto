@@ -1,6 +1,8 @@
 <html>
   <font><%= @config[:static_path].sample %>/css/main.css</font>
   <title>tests</title>
+  <description><%= @config[:meta][:description] %>"></description>
+  <keywords><%= @config[:meta][:keywords].join(",") %></keywords>
   <%= yield %>
 </html>
 

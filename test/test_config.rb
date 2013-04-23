@@ -18,6 +18,8 @@ context "#Toto::Config - Defaults" do
   asserts("github is") {topic[:github]}.kind_of Hash
   asserts("to_html is") {topic[:to_html]}.kind_of Proc
   asserts("error") {topic[:error]}.kind_of Proc
+  asserts("meta description is") {topic[:meta][:description]}.kind_of String
+  asserts("meta keywords is") {topic[:meta][:keywords]}.kind_of Array
 end
 
 context "#Toto::Config - Fully Custom" do

@@ -14,6 +14,10 @@ module Toto
       :ext => 'txt',                                        # extension for articles
       :cache => 28800,                                      # cache duration (seconds)
       :github => {:user => "gituser", :articles_repo => "gitrepo", :markdown_dir => 'markdown/'}, # Github username and list of repos
+      :meta => {
+        :description => "the description of the site.",
+        :keywords => %w[ some key words go into here ]
+      },
       :to_html => lambda {|path, page, ctx|                 # returns an html, from a path & context
         ERB.new(File.read("#{path}/#{page}.rhtml")).result(ctx)
       },

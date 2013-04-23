@@ -29,6 +29,8 @@ context "#Toto::Server - Defaults" do
     should("include the content")   { topic.body }.includes_html("p" => /Once upon a time/)
     should("have html from layout.rb")      { topic.body }.includes_html("title" => /tests/)
     should("have static from @config[:static_path]")  { topic.body }.includes_html("font" => "http://static.whatever.com/css/main.css")
+    should("have summary as meta description") { topic.body }.includes_html("description" => "the description of the site.")
+    should("have summary as meta keywords") { topic.body }.includes_html("keywords" => "some,key,words,go,into,here")
 
     should("have html from article.rb")      { topic.body }.includes_html("h2" => /the wizard of oz/)
   end
