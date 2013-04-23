@@ -13,7 +13,7 @@ module Toto
       :summary => {:max => 150, :delim => /~\n/},           # length of summary and delimiter
       :ext => 'txt',                                        # extension for articles
       :cache => 28800,                                      # cache duration (seconds)
-      :github => {:user => "", :articles_repo => "", :markdown_dir => 'markdown/'}, # Github username and list of repos
+      :github => {:user => "gituser", :articles_repo => "gitrepo", :markdown_dir => 'markdown/'}, # Github username and list of repos
       :to_html => lambda {|path, page, ctx|                 # returns an html, from a path & context
         ERB.new(File.read("#{path}/#{page}.rhtml")).result(ctx)
       },
