@@ -13,14 +13,15 @@ context "#Toto::Article - the-dichotomy-of-design.txt" do
   asserts(:summary).equals "Once upon a time&hellip;"
   asserts(:url).equals "http://127.0.0.1/article_directory/the-wizard-of-oz/"
   asserts(:path).equals "/article_directory/the-wizard-of-oz/"
-  asserts(:history_url).equals "https://github.com/gituser/gitrepo/commits/master/markdown/the-dichotomy-of-design.txt"
-  asserts(:source_url).equals "https://raw.github.com/gituser/gitrepo/master/markdown/the-dichotomy-of-design.txt"
+  asserts(:git_history).equals "https://github.com/gituser/gitrepo/commits/master/markdown/the-dichotomy-of-design.txt"
+  asserts(:git_source).equals "https://raw.github.com/gituser/gitrepo/master/markdown/the-dichotomy-of-design.txt"
   asserts(:original).equals true
   asserts(:tags).equals []
   asserts(:categories).equals []
   asserts(:comments).nil
   asserts(:modified).equals "12/10/1932"
   asserts(:source_name).nil
+  #asserts(:source_url).nil
   asserts(:title).equals "the wizard of oz"
   asserts(:date).equals "12/10/1932"
   asserts(:author).equals ENV["USER"]
